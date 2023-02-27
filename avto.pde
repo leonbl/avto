@@ -46,5 +46,9 @@ void draw() {
     
   v.update();
   v.display();
-  text(h, 50,50);
+  text(h, 10,40);
+  text("x: ",0,50);
+  text(razdaljaX, 10,50);
+  text("y: ",0,60);
+  text(razdaljaY, 10,60);
 }

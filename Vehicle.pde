@@ -9,7 +9,7 @@ class Vehicle {
 
   Vehicle(float x, float y) {
     acceleration = new PVector(0,0);
-    velocity = new PVector(0,1);
+    velocity = new PVector(1,0);
     position = new PVector(x,y);
     rx = 8;
     ry = 12;
@@ -28,7 +28,7 @@ class Vehicle {
     acceleration.mult(0);
   }
 
-  PVector distX(){
+  PVector distanceV(){
     PVector d = new PVector();
     d = velocity.copy();
     d.normalize();

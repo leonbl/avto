@@ -1,17 +1,16 @@
-Vehicle v;
 PImage myImage;
 boolean obrni = true;
 int cnt = 0;
 float heading;
 float posX, posY;
 float h;
+Vehicle v = new Vehicle(50, 50);
 
 void setup() {
   size(600, 600);
   myImage = loadImage("labirint.jpg");
-  v = new Vehicle(50, 50);
+  
   heading = v.getHeading();
-  v.setHeading(-90);
   v.printHeading();
 }
 
@@ -19,36 +18,48 @@ void draw() {
   background(255);
   image(myImage, 0, 0);
 
-  posX = v.position.x;
-  posY = v.position.y;
-
-  int razdaljaY=0;
-  while(get((int)posX,(int)posY)!=0xff000000){
-    point(posX,posY);
-    posY++;
-    razdaljaY++;
-  } //<>//
+  PVector p = new PVector();
+  PVector s = v.distanceV(); // enotin vektor v smeri vožnje
+  PVector d = v.distanceV();
+  d.rotate(PI/2);            // enotin vektor pravokoten na smer vožnje
   
-  posX = v.position.x;
-  posY = v.position.y;
-  int razdaljaX=0;
-  while(get((int)posX,(int)posY)!=0xff000000){
-    point(posX,posY);
-    posX++;
-    razdaljaX++;
+  p = v.position.copy();
+  p.add(s);
+  int dFront=0;
+  while(get((int)p.x,(int)p.y)!=0xff000000){
+    point(p.x,p.y);
+    p.add(s);
+    //println(d.x+" "+d.y);
+    dFront++; //<>//
+    if(dFront > 400) break;
   }
-  //println("dx="+razdaljaX+" dy="+razdaljaY);
   
-  if(razdaljaX<20){
-      v.setHeading(95);
-      h = v.getHeading();
+  p = v.position.copy();
+  p.add(d);
+  int dRight=0;
+  while(get((int)p.x,(int)p.y)!=0xff000000){
+    point(p.x,p.y);
+    p.add(d);
+    dRight++;
+    if(dRight > 400) break;
+  }
+
+  
+  if(dFront < 20){
+    v.setHeading(91);
+  }
+  
+  if(dRight < 15){
+    v.setHeading(-20);
   }
     
   v.update();
   v.display();
-  text(h, 10,40);
-  text("x: ",0,50);
-  text(razdaljaX, 10,50);
-  text("y: ",0,60);
-  text(razdaljaY, 10,60);
+  
+  text("kot: ",0,40);
+  text(v.getHeading(), 30,40);
+  text("dFront: ",0,50);
+  text(dFront, 40,50);
+  text("dRight: ",0,60);
+  text(dRight, 40,60);
 }

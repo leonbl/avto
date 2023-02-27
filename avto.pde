@@ -27,7 +27,7 @@ void draw() {
     point(posX,posY);
     posY++;
     razdaljaY++;
-  }
+  } //<>//
   
   posX = v.position.x;
   posY = v.position.y;

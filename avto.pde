@@ -4,6 +4,7 @@ boolean obrni = true;
 int cnt = 0;
 float heading;
 float posX, posY;
+float h;
 
 void setup() {
   size(600, 600);
@@ -40,9 +41,10 @@ void draw() {
   
   if(razdaljaX<20){
       v.setHeading(95);
-      v.printHeading();
+      h = v.getHeading();
   }
     
   v.update();
   v.display();
+  text(h, 50,50);
 }

@@ -28,6 +28,13 @@ class Vehicle {
     acceleration.mult(0);
   }
 
+  PVector distX(){
+    PVector d = new PVector();
+    d = velocity.copy();
+    d.normalize();
+    return d;
+  }
+  
   float getHeading(){
      return velocity.heading()*180/PI;
   }

@@ -5,7 +5,7 @@ float heading;
 float posX, posY;
 float h;
 Vehicle v = new Vehicle(60, 60);
-float R = 15; // Referenca - željena oddaljenost od stene
+float R = 22; // Referenca - željena oddaljenost od stene
 float e, u, up ,ui, ud, et, es;
 float Kp = -0.06;
 float Ki = -0.01;
